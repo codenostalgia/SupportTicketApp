@@ -1,0 +1,18 @@
+.App{
+  display: grid;
+  grid-template-columns: 25% 70%;
+}
+
+.ticket{
+    border: 3px solid black;
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+}
+
+
+.ticket-form{
+
+  padding: 25px;
+    
+}
