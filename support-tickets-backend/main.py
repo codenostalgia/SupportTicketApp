@@ -1,14 +1,15 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 import random
 from entities.Ticket import Ticket
 from services.TicketService import TicketService
 from fastapi import Request
 from fastapi.middleware.cors import CORSMiddleware
 import json
-from fastapi.responses import JSONResponse
 
 
 app = FastAPI()
+
+ticketServiceImpl = TicketService()
 
 allowed_origins = ["http://localhost:3000"]
 
@@ -19,7 +20,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-ticketServiceImpl = TicketService()
+
+@app.get("/")
+async def home():
+    return "Home Page"
 
 
 @app.post("/add")
@@ -35,6 +39,8 @@ async def fetch():
     return ticketServiceImpl.fetchTickets()
 
 
-@app.get("/")
-async def home():
-    return "Home Page"
+@app.delete("/tickets/{id}")
+async def deleteTicket(id):
+    print("ID: ", id)
+    ticketServiceImpl.deleteTicket(id)
+    return "DELETED"

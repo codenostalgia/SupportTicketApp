@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const AddTicket = (props) => {
+const TicketForm = (props) => {
   const [ticket, setTicket] = React.useState({
     name: "",
     email: "",
@@ -24,6 +24,9 @@ const AddTicket = (props) => {
   return (
     <div>
       <form className="ticket-form border " style={{ margin: "2%" }}>
+        <b>CREATE SUPPORT TICKET</b>
+        <br />
+        <br />
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
             Name
@@ -69,4 +72,4 @@ const AddTicket = (props) => {
   );
 };
 
-export default AddTicket;
+export default TicketForm;

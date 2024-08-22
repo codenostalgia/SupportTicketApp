@@ -1,9 +1,14 @@
 import "./App.css";
 import SupportTickets from "./components/SupportTickets";
-import AddTicket from "./components/AddTicket";
-import { addTicket, fetchTickets } from "./axios/axios_request";
+import TicketForm from "./components/TicketForm";
+import {
+  addTicket,
+  fetchTickets,
+  deleteTicketRequest,
+} from "./axios/axios_request";
 import React from "react";
 import { useEffect } from "react";
+import Header from "./components/Header";
 
 function App() {
   const [tickets, setTickets] = React.useState([]);
@@ -12,7 +17,6 @@ function App() {
     fetchTickets()
       .then((res) => {
         setTickets((prev) => res.data);
-        console.log(res);
       })
       .catch((err) => {
         console.log(err.msg);
@@ -23,16 +27,32 @@ function App() {
     console.log("ticket added");
     addTicket(ticket)
       .then((res) => {
-        console.log(res);
+        fetchTickets()
+          .then((res) => {
+            console.log("New data fetched after Add request: ", res);
+            setTickets((prev) => res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);
       });
+  }
 
-    fetchTickets()
+  function deleteTicket(ticket) {
+    console.log("ticket deleted");
+    deleteTicketRequest(ticket.ticket_id)
       .then((res) => {
-        setTickets((prev) => res.data);
-        console.log(res);
+        fetchTickets()
+          .then((res) => {
+            console.log("New data fetched after delete request: ", res);
+            setTickets((prev) => res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -40,9 +60,23 @@ function App() {
   }
 
   return (
-    <div className="App Container-fluid">
-      <AddTicket ticketsUpdate={ticketsUpdate} />
-      <SupportTickets tickets={tickets} />
+    <div className="App">
+      <nav className="navbar sticky-top bg-primary Noto Sans">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="#">
+            <Header />
+          </a>
+        </div>
+      </nav>
+
+      <div className="Container main-body">
+        <TicketForm className="add-ticket" ticketsUpdate={ticketsUpdate} />
+        <SupportTickets
+          className="tickets-body"
+          tickets={tickets}
+          deleteTicket={deleteTicket}
+        />
+      </div>
     </div>
   );
 }

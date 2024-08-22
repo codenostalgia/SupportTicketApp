@@ -12,10 +12,10 @@ class TicketService:
         if not my_file.is_file():
             with open(my_file, "ab") as f:
                 pickle.dump(
-                    Ticket("Natalia Romanoff", "Blackwidow@gmail.com", 
+                    Ticket("Natalia Romanoff", "Blackwidow@gmail.com",
                            "I have installed the VPN as per given instructions in the manual, But I'm facing issues with my Download & Upload speeds after using VPN"), f)
                 pickle.dump(
-                    Ticket("Steve Rodgers", "captainamerica@gmail.com", 
+                    Ticket("Steve Rodgers", "captainamerica@gmail.com",
                            "I am facing issues related to some settings conflict between my Antivirus software & VPN, Could you please help me solve it??"), f)
                 pickle.dump(Ticket("Tony Starc", "ironman@gmail.com",
                             "I tried integrating the ChatBot on my website, but its not able to pickup the configuration file, how to resolve it?"), f)
@@ -36,3 +36,25 @@ class TicketService:
     def addTickets(self, ticket):
         with open("./repo/database.pkl", "ab") as file:
             pickle.dump(ticket, file)
+
+    def deleteTicket(self, id):
+        print(type(id))
+        f = open("./repo/database.pkl", 'rb+')
+        tickets = []
+
+        while True:
+            try:
+                ticket = pickle.load(f)
+                if (str(ticket.ticket_id) != id):
+                    tickets.append(ticket)
+            except EOFError:
+                break
+
+        print("Filtered: ", list(tickets))
+        f.seek(0)
+        f.truncate()
+
+        for i in range(len(tickets)):
+            pickle.dump(tickets[i], f)
+        else:
+            f.close()

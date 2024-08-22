@@ -1,18 +1,35 @@
-.App{
-  display: grid;
-  grid-template-columns: 25% 70%;
+* {
+  margin: 0px;
+  padding: 0px;
 }
 
-.ticket{
-    border: 3px solid black;
-    display: inline-block;
-    padding: 10px;
-    margin: 5px;
-}
-
-
-.ticket-form{
-
+.ticket-form {
   padding: 25px;
-    
+}
+
+.main-body {
+  display: grid;
+  width: 90%;
+  margin-left: 5%;
+  grid-template-columns: 20% 80%;
+}
+
+.add-ticket {
+  margin-left: 100px;
+}
+
+.header {
+  font-family: Arial;
+}
+
+.card-button {
+  color: yellow;
+  width: 20%;
+  margin-top: 4%;
+  margin-left: 80%;
+  display: inline;
+}
+
+.mycard {
+  margin: 2%;
 }
