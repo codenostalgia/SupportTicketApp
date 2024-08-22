@@ -10,7 +10,25 @@ Database: File based
 ---------------------------------------------------------
 
 Before running app please ensure, 
-you have installed requre dependencies like FastAPI, React JS, bootstrap, axios
+you have installed required dependencies like -
+
+Frontend-
+├── @testing-library/jest-dom@5.17.0
+├── @testing-library/react@13.4.0
+├── @testing-library/user-event@13.5.0
+├── axios@1.7.4
+├── bootstrap@5.3.3
+├── react-dom@18.3.1
+├── react-scripts@5.0.1
+├── react@18.3.1
+└── web-vitals@2.1.4
+
+Backend-
+├── FastAPI
+├── http
+├── json
+├── pickle
+ 
 
 you can use-
 npm install dependency_name
