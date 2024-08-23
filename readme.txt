@@ -44,3 +44,11 @@ To run the App:
 2) Run Frontend
     -  navigate to directory "support-tickets-frontend"
     -  run command "npm start"
+
+
+---------------------------------------------------------
+
+You can access the App at following default Ports-
+
+Frontend - http://localhost:3000/
+Backend - http://localhost:8000/
