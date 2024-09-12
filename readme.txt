@@ -43,6 +43,7 @@ To run the App:
 
 2) Run Frontend
     -  navigate to directory "support-tickets-frontend"
+    -  run command "npm install"
     -  run command "npm start"
 
 
